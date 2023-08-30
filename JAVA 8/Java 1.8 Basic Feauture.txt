@@ -1,0 +1,79 @@
+=================
+Java 1.8v Features
+=================
+
+Java 1.0
+
+Java 1.1
+
+Java 1.2   (Collection Framework)
+
+..
+
+Java 1.5  (Big Release)
+
+..
+
+Java 1.8 (Big Release) ------- Functional Programming
+
+..
+
+Java 19 
+
+
+=================
+Java 1.8v Features
+=================
+
+-> Java 1.8v introduced lot of new features in java 
+
+-> Java 1.8v new features changed java programming style
+
+=========================
+Main Objectivies of Java 1.8v
+=========================
+
+-> Simplify Java Programming
+
+-> Enable Functional Programming
+
+-> Write more readable and consice code
+
+
+=================
+ Java 1.8 Features
+=================
+
+1) Interface changes
+
+		1.1 ) Default Methods
+		1.2 ) Static Methods
+
+2)  Functional Interfaces (@FunctionalInterface)
+
+		2.1 ) Predicate & BiPredicate
+		2.2 ) Consumer  & BiConsumer
+		2.3 ) Supplier
+		2.4 ) Function & BiFunction
+
+3) Lambda Expressions
+
+4) Method References & Constructor References
+
+5) ******  Stream API  ********
+
+6) Optional class (to avoid null pointer exceptions)
+
+7) Spliterator
+
+8) StringJoiner
+
+9) forEach ( ) method
+
+10) Date & Time API
+
+11) Nashron Engine
+
+12) I/O Stream Changes (Files.lines(Path p))
+
+13) Base64 Encoding & Decoding

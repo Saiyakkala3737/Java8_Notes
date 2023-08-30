@@ -1,0 +1,303 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=========================================================
+Retrieve student record based on student id and return that record
+=========================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=================
+
+1) What are new changes in java 8 version
+
+2) Interface Changes
+
+		2.1 ) Default Methods
+		2.2 ) Static Methods
+
+3) Why Default & Static method introduced in java 8
+
+4) Lambda Expressions Introduction
+
+5) How to write Lambda Expression
+
+6) How to invoke lambda expression
+
+7) Functional Interfaces
+
+		7.1) Predicate & BiPredicate
+		7.2) Supplier
+		7.3) Consumer & BiConsumer
+		7.4) Function & BiFunction
+
+8) Collections Sorting using Lambda
+
+9) Thread Creation Using Lambda
+
+10) Method References & Constructor References
+
+11) java.util.StringJoiner class
+
+12) java.utils.Optional class
+
+13) forEach ( Consumer c ) method 
+
+14) Date & Time API Changes
+
+			14.1) LocalDate
+			14.2) LocalTime
+			14.3) LocalDateTime
+			14.4) Period
+			14.5) Duration
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+==============================================
+Set - 1 : Intermediate Operations   (will return Stream)
+==============================================
+
+Filters ----> filter ( ) 
+
+Mappings ----> map  ( ) & flatMap ( )
+
+Slicing      ----> distinct ( ) & limit ()  & skip ( )
+
+
+==============================================
+Set - 2 : Terminal Operations  (will return result)
+==============================================
+
+Finding   ---> findFirst ( ) & findAny ( )
+
+Matching  ---> anyMatch ( ) & allMatch ( ) & noneMatch ( )
+
+Collecting  ---> collect ( )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=============
+Stream Reduce
+=============
+
+package demo;
+
+import java.util.Arrays;
+
+public class Sum {
+
+	public static void main(String[] args) {
+
+		int[] nums = { 1, 2, 3, 4, 5 };
+		
+		/*int sum = 0;
+		for(int i : nums) {
+			sum = sum + i;
+		}
+		System.out.println(sum);*/
+		
+		int reduce = Arrays.stream(nums).reduce(0, (a,b) -> a+b);
+		System.out.println(reduce);
+
+	}
+}
+
+
+
+======================
+Nashorn Engine in Java 1.8
+======================
+
+-> Nashorn is a Java Script Engine which is used to execute Java Script code using JVM
+
+-> Create a javascript file like below (filename : one.js)
+
+--------------------- one.js --------------------------
+
+var hello = function(){	
+	print("Welcome to JavaScript");
+}
+
+hello();
+
+------------------------------------------------------
+
+-> Open command prompt and execute below command
+
+	syntax :  jjs one.js
+
+
+-> We can execute above Java Script file using Java program like below
+
+
+import java.io.*;
+
+import javax.script.*;
+
+public class Demo {
+
+	public static void main(String... args) throws Exception {
+
+		ScriptEngine se = new ScriptEngineManager().getEngineByName("Nashorn");
+
+		se.eval(new FileReader("one.js"));
+	}
+}
+
+==========================
+I/O Streams Changes in Java 8
+==========================
+
+Task : Write a java program to read a file data and print it on the console
+
+
+-> To read file data we can use FileReader & BufferedReader classes
+
+			
+			FileReader ----> It will read the data character by character (slow performance)
+
+			BufferedReader ---> It will read the data line by line
+
+			Files.lines(Path path) ---> It will read all lines at a time and returns as a Stream	
+
+
+package demo;
+
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.stream.Stream;
+
+public class ReadFileData {
+
+	public static void main(String[] args) throws Exception {
+
+		/*FileReader fr = new FileReader(new File("info.txt"));
+
+		BufferedReader br = new BufferedReader(fr);
+
+		String line = br.readLine();
+
+		while (line != null) {
+			System.out.println(line);
+			line = br.readLine();
+		}
+		br.close();*/
+		
+		String filename = "info.txt";
+		
+		try (Stream<String> stream = Files.lines(Paths.get(filename))){
+			
+			stream.forEach(line -> System.out.println(line));
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+}
+
+
+
+
+=======================
+Java 8 Base64 Changes
+=======================
+
+-> Base64 is  a predefined class available in java.util package
+
+-> Base64 class providing methods to perform encoding and decoding 
+
+
+		Encoder encoder = Base64.getEncoder();
+
+		// converting String to byte[] and passing as input for encode( ) method
+		byte[] encode = encoder.encode(pwd.getBytes());
+
+		// Converting byte[] to String
+		String encodedPwd = new String(encode);
+
+		System.out.println(encodedPwd);
+		
+		Decoder decoder = Base64.getDecoder();
+		
+		byte[ ] decode = decoder.decode(encodedPwd);
+		String decodedPwd = new String(decode);
+		System.out.println(decodedPwd);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

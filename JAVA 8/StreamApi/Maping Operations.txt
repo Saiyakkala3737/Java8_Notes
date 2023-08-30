@@ -1,0 +1,107 @@
+===================
+Mapping Operations
+===================
+
+-> Mapping operations are belongs to intermediate operations in the Stream api
+
+-> Mapping operations are used to transform the stream elements and return transformed elements as new Stream
+
+	
+		Ex : Stream  map (Function function) ;
+
+
+
+=======================
+Example-1 : map ( ) method
+=======================
+
+public class FirstDemo {
+
+	public static void main(String[] args) {
+		
+		
+		List<String> names = Arrays.asList("india","usa","uk", "japan");
+		
+		/*for(String name : names) {
+			System.out.println(name.toUpperCase());
+		}*/
+		
+		names.stream().map(name -> name.toUpperCase()).forEach(n -> System.out.println(n));
+
+		names.stream().mapToInt(name -> name.length()).forEach(i -> System.out.println(i));
+		
+	}
+}
+
+=========================
+Example-2 : map ( ) method
+========================
+
+public class FirstDemo {
+
+	public static void main(String[] args) {
+		
+		
+		List<String> names = Arrays.asList("Ashok", "Anil", "Raju", "Rani", "John", "Akash", "Charles");
+		
+		// print name with its length which are starting with 'A' using Stream API
+						//Ashok - 5
+						//Anil  - 4
+						//Akash - 5
+		
+		names.stream()
+			 .filter(name -> name.startsWith("A"))
+			 .map(name -> name + "-" +name.length())
+			 .forEach(name -> System.out.println(name));
+	}
+}
+
+
+=======================
+Example-3 : map ( ) method
+========================
+
+class Employee ( ) {
+
+	String name;
+	int age;
+	double salary;
+
+}
+
+Task : Print Emp Name with Emp age whose salary is >= 50,000 using Stream API.
+
+
+public class FirstDemo {
+
+	public static void main(String[] args) {
+
+		Employee e1 = new Employee("John", 35, 55000.00);
+		Employee e2 = new Employee("David", 25, 45000.00);
+		Employee e3 = new Employee("Buttler", 35, 35000.00);
+		Employee e4 = new Employee("Steve", 45, 65000.00);
+		
+		Stream<Employee> stream = Stream.of(e1, e2, e3, e4);
+		
+		/*stream.filter(e -> e.salary >= 50000.00)
+			  .map(e -> e.name+" - " +e.age)
+			  .forEach(e -> System.out.println(e));*/
+		
+		stream.filter(e -> e.salary >= 50000.00)
+		  .forEach(e -> System.out.println(e.name + "-" + e.age));
+
+	}
+}
+
+class Employee {
+
+	String name;
+	int age;
+	double salary;
+
+	public Employee(String name, int age, double salary) {
+		this.name = name;
+		this.age = age;
+		this.salary = salary;
+	}
+}

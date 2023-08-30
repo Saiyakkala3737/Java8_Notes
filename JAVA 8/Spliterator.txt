@@ -1,0 +1,34 @@
+==============
+Java Spliterator
+==============
+
+-> Like Iterator and ListIterator, Spliterator is one of the Java Iterator
+
+-> Spliterator introduced in java 1.8v
+
+-> Spliterator is an interface in collections api
+
+-> Spliterator supports both serial &  paralell programming
+
+-> Spliterator we can use to traverse both Collections & Streams
+
+-> Spliterator can't be used with Map implementation classes
+
+
+package in.ashokit.streams;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Spliterator;
+
+public class ParallelDemo {
+
+	public static void main(String[] args) {
+
+		List<String> names = Arrays.asList("sachin", "sehwag", "dhoni");
+		
+		Spliterator<String> spliterator = names.stream().spliterator();
+		
+		spliterator.forEachRemaining(n -> System.out.println(n));
+	}
+}

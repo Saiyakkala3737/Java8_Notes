@@ -1,0 +1,8 @@
+
+Predicate ------> takes inputs ----> returns true or false    ===>    test ( )
+
+Supplier -----> will not take any input---> returns output  ===> get ( )
+
+Consumer ----> will take input ----> will not return anything  ===> accept ( )
+
+Function -----> will take input ---> will return output ===> apply ( )

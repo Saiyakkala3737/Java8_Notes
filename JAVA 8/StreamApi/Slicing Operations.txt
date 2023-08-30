@@ -1,0 +1,33 @@
+==========================
+Slicing Operations with Stream
+==========================
+
+1) distinct ( )  => To get unique elements from the Stream
+
+2) limit ( long maxSize )  => Get elements from the stream based on given size
+
+3) skip (long n)  => It is used to skip given number of elements from starting position of the stream 
+
+
+Note: All the above 3 methods are comes under Intermediate Operational Methods. They will perform operation and returns new Stream.
+
+package in.ashokit.streams;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class FirstDemo {
+
+	public static void main(String[] args) {
+
+		List<String> javacourses = Arrays.asList("corejava", "advjava", "springboot", "restapi", "microservices");
+
+		javacourses.stream().limit(3).forEach(c -> System.out.println(c));
+
+		javacourses.stream().skip(3).forEach(c -> System.out.println(c));
+
+		List<String> names = Arrays.asList("raja", "rani", "raja", "rani", "guru");
+		names.stream().distinct().forEach(name -> System.out.println(name));
+
+	}
+}

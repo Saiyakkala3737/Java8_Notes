@@ -1,0 +1,133 @@
+=======================
+Date & Time API Changes
+=======================
+
+-> In java we have below 2 classes to represent Date
+
+			1) java.util.Date 
+
+			2) java.sql.Date
+
+
+Note: When we are performing database operations then we will use java.sql.Date class.
+
+-> For normal Date related operations we will use java.util.Date class
+
+			Date d = new Date ( );
+			System.out.prinln(d);
+
+Note: When we create Object for Date class, it will represent both date and time.
+
+-> If we want to get only date or only time then we need to format it using SimpleDateFormat class.
+
+
+========================
+java.text.SimpleDateFormat
+=======================
+
+-> SimpleDateFormat is a predefined class in java.text pacakage
+
+-> This class provided methods to perform Date conversions
+
+
+		Date to String conversion  ===>   String format (Date d) 
+
+		String to Date conversion ===>  Date parse(String str)
+
+
+// Date Conversions Example
+
+package in.ashokit.java8;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public class DateDemo {
+
+	public static void main(String[] args) throws Exception {
+
+		Date date = new Date();
+		System.out.println(date);
+
+		// Converting Date to String
+		SimpleDateFormat sdf1 = new SimpleDateFormat("dd/MM/yyyy");
+		String format1 = sdf1.format(date);
+		System.out.println(format1);
+
+		SimpleDateFormat sdf2 = new SimpleDateFormat("MM/dd/yyyy");
+		String format2 = sdf2.format(date);
+		System.out.println(format2);
+
+		// Convert String to Date
+		SimpleDateFormat sdf3 = new SimpleDateFormat("yyyy-MM-dd");
+		Date parsedDate = sdf3.parse("2022-12-20");
+		System.out.println(parsedDate);
+		
+	}
+}
+
+=========================================================================================
+
+=> To overcome the problems of java.util.Date class java 1.8 introduced Date API changes
+
+=> In java 1.8 version, new classes got introduced to deal with Date & Time functionalities
+
+				1) java.time.LocalDate  (it will deal with only date)
+
+				2) java.time.LocalTime  (it will deal with only time)
+
+				3) java.time.LocalDateTime (it will deal with both date & time)
+
+
+
+// Java 1.8 Date API Example
+
+package in.ashokit.java8;
+
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.Period;
+
+public class NewDateDemo {
+
+	public static void main(String[] args) {
+
+		LocalDate of = LocalDate.of(2021, 1, 20);
+		System.out.println(of);
+
+		LocalDate date = LocalDate.now();
+		System.out.println(date);
+
+		date = date.plusDays(3);
+		System.out.println(date);
+
+		date = date.plusMonths(1);
+		System.out.println(date);
+
+		date = date.plusYears(2);
+		System.out.println(date);
+
+		boolean leapYear = LocalDate.parse("2020-12-22").isLeapYear();
+		System.out.println("Leap Year :: " + leapYear);
+
+		boolean before = LocalDate.parse("2021-12-22").isBefore(LocalDate.parse("2022-12-22"));
+		System.out.println("Before Date : " + before);
+
+		LocalTime time = LocalTime.now();
+		System.out.println(time);
+		time = time.plusHours(2);
+		System.out.println(time);
+
+		LocalDateTime datetime = LocalDateTime.now();
+		System.out.println(datetime);
+
+		Period period = Period.between(LocalDate.parse("1991-05-20"), LocalDate.now());
+		System.out.println(period);
+
+		Duration duration = Duration.between(LocalTime.parse("18:00"), LocalTime.now());
+		System.out.println(duration);
+	}
+}
+

@@ -1,0 +1,98 @@
+=============
+Optional Class
+=============
+
+-> java.util.Optional class introduced in java 1.8v
+
+-> Optional class is used to avoid NullPointerExceptions in the program
+
+
+Q) What is NullPointerException (NPE) ?
+
+Ans) When we perform some operation on null value then we will get NullPointerException
+
+
+				String s = null;
+
+				s.length ( ) ;  // NPE
+
+
+-> To avoid NullPointerExceptions we have to implement null check before performing operation on the Object like below.
+
+				String s = null;
+
+				if( s! = null ) {
+					System.out.println(s.length ( ));
+				}
+
+
+
+Note: In project there is no gaurantee that every programmer will implement null checks. If any body forgot to implement null check then program will run into NullPointerException.
+
+-> To avoid this problem we need to use Optional class like below.
+
+
+package in.ashokit.java8;
+
+import java.util.Optional;
+
+public class User {
+
+
+	// Without Optional object
+	public String getUsernameById(Integer id) {
+		if (id == 100) {
+			return "Raju";
+		} else if (id == 101) {
+			return "Rani";
+		} else if (id == 102) {
+			return "John";
+		} else {
+			return null;
+		}
+	}
+
+	// with Optional Object
+	public Optional<String> getUsername(Integer id) {
+		String name = null;
+		if (id == 100) {
+			name = "Raju";
+		} else if (id == 101) {
+			name = "Rani";
+		} else if (id == 102) {
+			name = "John";
+		}
+		return Optional.ofNullable(name);
+	}
+}
+
+
+package in.ashokit.java8;
+
+import java.util.Optional;
+import java.util.Scanner;
+
+public class MsgService {
+
+	public static void main(String[] args) {
+
+		Scanner s = new Scanner(System.in);
+
+		System.out.println("Enter User ID");
+		int userId = s.nextInt();
+
+		User u = new User();
+		/*String userName = u.getUsernameById(userId);
+		String msg = userName.toUpperCase() + ", Hello"; 
+		System.out.println(msg);*/
+		
+		Optional<String> username = u.getUsername(userId);
+		
+		if(username.isPresent()) {
+			String name = username.get();
+			System.out.println(name.toUpperCase()+", Hello");
+		}else {
+			System.out.println("No Data Found");
+		}
+	}
+}

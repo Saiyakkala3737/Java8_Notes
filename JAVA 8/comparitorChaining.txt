@@ -1,0 +1,32 @@
+import java.util.*;
+
+public class Person {
+    private String name;
+    private int age;
+    private double salary;
+
+    // Constructor and other methods here...
+
+    // Getters and setters here...
+}
+
+public class ComparatorChainingExample {
+    public static void main(String[] args) {
+        List<Person> people = new ArrayList<>();
+        // Add people to the list...
+
+        // Chaining comparators using Comparator.comparing()
+        Comparator<Person> byAge = Comparator.comparing(Person::getAge);
+        Comparator<Person> bySalary = Comparator.comparingDouble(Person::getSalary);
+        Comparator<Person> byName = Comparator.comparing(Person::getName);
+
+        // Chaining multiple comparators
+        Comparator<Person> combinedComparator = byAge
+                .thenComparing(bySalary)
+                .thenComparing(byName);
+
+        Collections.sort(people, combinedComparator);
+
+        // Now the 'people' list is sorted based on the defined criteria
+    }
+}

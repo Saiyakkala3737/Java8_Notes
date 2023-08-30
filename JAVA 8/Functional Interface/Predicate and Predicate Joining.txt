@@ -1,0 +1,157 @@
+========
+Predicate
+========
+
+-> It is predefined Functional interface
+
+-> It is used check condition and returns true or false value
+
+-> Predicate interface having only one abstract method that is test (T t)
+
+
+			interface Predicate{
+				boolean test(T t);
+			}		
+
+
+// Predicate Example
+
+package in.ashokit.java8;
+
+import java.util.function.Predicate;
+
+public class PredicateDemo {
+
+	public static void main(String[] args) {
+
+		Predicate<Integer> p = i -> i > 10;
+		System.out.println(p.test(5));
+		System.out.println(p.test(15));
+	}
+
+}
+
+=======================================================================================
+Task: Declare names in an array and print names which are starting with 'A' using lambda expression.
+
+		String[ ]  names = {"Anushka", "Anupama", "Deepika", "Kajol", "Sunny" };
+
+=========================================================================================
+
+package in.ashokit.java8;
+
+import java.util.function.Predicate;
+
+public class PredicateDemo2 {
+
+	public static void main(String[] args) {
+
+		String[ ] names = { "Anushka", "Anupama", "Deepika", "Kajol", "Sunny" };
+
+		Predicate<String> p = name -> name.charAt(0) == 'A';
+
+		for (String name : names) {
+			if ( p.test(name) ) {
+				System.out.println(name);
+			}
+		}
+	}
+}
+
+============================================================================
+Task-2 : Take list of persons and print persons whose age is >= 18 using Lambda Expression
+============================================================================
+
+package in.ashokit.java8;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+
+class Person {
+
+	String name;
+	int age;
+
+	Person(String name, int age) {
+		this.name = name;
+		this.age = age;
+	}
+}
+
+public class PredicatePersonsDemo {
+
+	public static void main(String[] args) {
+
+		Person p1 = new Person("John", 26);
+		Person p2 = new Person("Smith", 16);
+		Person p3 = new Person("Raja", 36);
+		Person p4 = new Person("Rani", 6);
+
+		List<Person> persons = Arrays.asList(p1, p2, p3, p4);
+
+		Predicate<Person> predicate = p -> p.age >= 18;
+
+		for (Person person : persons) {
+			if (predicate.test(person)) {
+				System.out.println(person.name);
+			}
+		}
+	}
+}
+
+================
+Predicate Joining
+===============
+
+-> To combine multiple predicates we will use Predicate Joining
+
+and ( ) method
+
+or ( ) method
+
+Task-1 : Print emp names who are working in Hyd location in DB team.
+
+package in.ashokit.java8;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
+
+class Employee {
+
+	String name;
+	String location;
+	String dept;
+
+	Employee(String name, String location, String dept) {
+		this.name = name;
+		this.location = location;
+		this.dept = dept;
+	}
+}
+
+public class PredicateJoinDemo {
+
+	public static void main(String[] args) {
+		Employee e1 = new Employee("Anil", "Chennai", "DevOps");
+		Employee e2 = new Employee("Rani", "Pune", "Networking");
+		Employee e3 = new Employee("Ashok", "Hyd", "DB");
+		Employee e4 = new Employee("Ganesh", "Hyd", "DB");
+
+		List<Employee> emps = Arrays.asList(e1, e2, e3, e4);
+
+		Predicate<Employee> p1 = (e) -> e.location.equals("Hyd");
+		Predicate<Employee> p2 = (e) -> e.dept.equals("DB");
+		Predicate<Employee> p3 = (e) -> e.name.startsWith("A");
+
+		// Predicate Joining
+		Predicate<Employee> p = p1.and(p2).and(p3);
+
+		for (Employee e : emps) {
+			if (p.test(e)) {
+				System.out.println(e.name);
+			}
+		}
+	}
+}
